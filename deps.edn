@@ -2,4 +2,6 @@
  :aliases
  {:dev
   {:extra-deps
-   {io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}}}}}
+   {io.github.nubank/morse {:git/tag "v2023.04.30.01" :git/sha "d99b09c"}}}
+  :morse-ui
+  {:exec-fn replman.repl/repl+ui}}}

@@ -10,11 +10,15 @@
 
 (def ^:private echan (var-get #'dev.nu.morse/echan))
 
+(defn morse-ui
+  []
+  (morse/ui :proc server/prepl :mode :in-proc))
+
 (defn eval-special-forms!
   [val]
   (cond
     (= val :repl/morse-ui)
-    (morse/ui :proc server/prepl :mode :in-proc)))
+    (morse-ui)))
 
 (defn repl []
   (apply require main/repl-requires)
@@ -43,6 +47,12 @@
                    (printf "%s=> " ns)
                    (flush)))))]
     (server/prepl *in* cb)))
+
+
+(defn repl+ui
+  [_]
+  (morse-ui)
+  (repl))
 
 (comment
   (in-ns 'replman.repl)
